@@ -143,7 +143,7 @@ func waitForReceipt(client *AnvilClient, txHash common.Hash, name string) *types
 
 func lf(format string, args ...interface{}) {
 	ts := time.Now().Format("[15:04:05.000] ")
-	fmt.Printf(ts+format+"\n", args...)
+	fmt.Printf(ts+format, args...)
 	fmt.Println()
 }
 
