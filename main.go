@@ -58,6 +58,9 @@ func main() {
 		signer,
 		userPK,
 	)
+	if err != nil {
+		panic(err)
+	}
 
 	err = client.ethclient.SendTransaction(context.Background(), signedTx)
 	if err != nil {
