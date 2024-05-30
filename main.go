@@ -28,7 +28,7 @@ func main() {
 	}
 	userAddress := crypto.PubkeyToAddress(userPK.PublicKey)
 
-	err = client.SetBalance(context.Background(), userAddress, 1e18)
+	err = client.SetBalance(context.Background(), userAddress, 10*1e18)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,7 +50,7 @@ func main() {
 			&types.LegacyTx{
 				Nonce:    0,
 				To:       &common.Address{}, // burn
-				Value:    big.NewInt(1e18 / 10),
+				Value:    big.NewInt(1e18 / 100),
 				Gas:      21000,
 				GasPrice: price,
 			},
@@ -96,13 +96,13 @@ func main() {
 			GasFeeCap: nil,
 			GasTipCap: nil,
 			Nonce:     big.NewInt(int64(nonce)),
-			Value:     big.NewInt(1e18 / 2),
+			Value:     big.NewInt(1e18), // 1 eth
 			Context:   nil,
 			NoSend:    false,
 		},
 		userAddress,
-		big.NewInt(1e18/4),
-		1e6,
+		big.NewInt(1e18/2), // 0.5 eth
+		1e18/2,             // very large - should not trigger a revert - does! too big!
 		false,
 		[]byte{},
 	)
