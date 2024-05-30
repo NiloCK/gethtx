@@ -112,7 +112,7 @@ func main() {
 		log.Panicf("error submitting deposit tx: %s", err)
 	}
 
-	lf("deposit tx sent: %s\n", depositTx.Hash().Hex())
+	lf("deposit tx sent: %s", depositTx.Hash().Hex())
 	receipt := waitForReceipt(client, depositTx.Hash(), "depositTx")
 
 	str, err := json.MarshalIndent(receipt, "", "  ")
@@ -152,9 +152,9 @@ func waitForContract(client *AnvilClient, contractAddress string, name string) {
 		codeAt, err := client.ethclient.CodeAt(context.Background(), common.HexToAddress(contractAddress), nil)
 		if err != nil || len(codeAt) == 0 {
 			time.Sleep(1 * time.Second)
-			lf("waiting for contract [%s] to be deployed\n", name)
+			lf("waiting for contract [%s] to be deployed", name)
 		} else {
-			lf("found contract [%s]\n", name)
+			lf("found contract [%s]", name)
 			foundContract = true
 		}
 	}
