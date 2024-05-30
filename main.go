@@ -105,7 +105,7 @@ func main() {
 		},
 		userAddress,
 		big.NewInt(1e18/2), // 0.5 eth
-		1e18/2,             // very large - should not trigger a revert - does! too big!
+		25_000_000/2,       // from outputs on ruConfig - gasLimit: 25_000_000
 		false,
 		[]byte{},
 	)
